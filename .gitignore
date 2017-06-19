@@ -7,3 +7,4 @@
 *.csv
 Data/
 Output/
+.DS_Store

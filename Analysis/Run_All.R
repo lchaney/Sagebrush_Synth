@@ -4,7 +4,6 @@
 # This script is used to run all necessary analsyis
 #==============================================================================================#
 
-
 ####PACKAGES####
   #install and load the following packages
   packagelist <- c("survival", "ggplot2", "doBy", "lme4", "lmerTest",
@@ -34,6 +33,10 @@
     install_github("vqv/ggbiplot") #installs ggbiplot from github
   library(ggbiplot) #biplot using ggplot2
 
+#create Output folder
+  if(!file.exists("Output"))
+    dir.create("Output")
+    
 ###FLOWERING###
   #source the flower analysis
   source('Analysis/flower_script.R')

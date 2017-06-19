@@ -9,7 +9,7 @@
   #install and load the following packages
   packagelist <- c("survival", "ggplot2", "doBy", "lme4", "lmerTest",
                    "merTools", "MuMIn", "lattice", "xlsx", "data.table",
-                   "gridExtra", "tidyr", "dplyr")
+                   "gridExtra", "tidyr", "dplyr", "ggbiplot", "GGally", "devtools")
 
   new.packages <- packagelist[!(packagelist %in% installed.packages()[,"Package"])]
 
@@ -29,7 +29,10 @@
   library(gridExtra) #gridarrange and arrangeGrob for ggplots
   library(tidyr) #used for data wrangling
   library(dplyr) #used for data wrangling
-
+  library(devtools) #allows installation of packages from github
+  library(GGally) #xxx
+    install_github("vqv/ggbiplot") #installs ggbiplot from github
+  library(ggbiplot) #biplot using ggplot2
 
 ###FLOWERING###
   #source the flower analysis
@@ -45,4 +48,9 @@
   
 ###SURVIVAL###
   #source the survival analysis
-  source('Analysis/surv_script.R')  
+  source('Analysis/surv_script.R')
+  
+###PCA###
+  #source the PCA joint analysis
+  source('Analysis/pca_script.R')
+  

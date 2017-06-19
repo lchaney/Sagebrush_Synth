@@ -1,10 +1,11 @@
-library(ggplot2)
-library(ggbiplot)
-library(GGally)
-library(xlsx)
+#==============================================================================================#
+# Script created by Bryce Richardson and Lindsay Chaney 2017
+# Script created in version R 3.3.3 
+# This script is used to run the joint PCA analsyis
+#==============================================================================================#
 
 ###READ IN DATA
-sage<- read.csv(file="pca_synthesis.csv", sep=",",head=TRUE, na.strings = "na")
+sage<- read.csv(file="Data/pca_synthesis.csv", sep=",",head=TRUE, na.strings = "na")
 
 sage <- na.omit(sage)
 qdata <- sage[, c("flower","seed","growth","survival")]
@@ -23,9 +24,9 @@ ggpairs(qdata[,(1:4)])
 
 #===============================================================================#
 ##VARIATION EXPLAINED
-var_expl<- read.csv(file="model_var_explained.csv", sep=",",head=TRUE, na.strings = "na")
+var_expl<- read.csv(file="Data/model_var_explained.csv", sep=",",head=TRUE, na.strings = "na")
 
-g <- ggplot(var_expl, aes(Trait,Variation.Explained, fill=Factor,color = Factor), position = position_stack(reverse = FALSE))
+g <- ggplot(var_expl, aes(Trait, proportion, fill=Factor,color = Factor), position = position_stack(reverse = FALSE))
 g + geom_col(width = 0.4) + scale_fill_brewer(palette = "Set1") + coord_flip()+ scale_color_manual(values=c("Environment"="black","GxE"="black","ssp"="black"))  + theme_classic() 
 
 #===============================================================================#

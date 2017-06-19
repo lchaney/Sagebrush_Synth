@@ -1,21 +1,9 @@
-require(lme4)
-require(lmerTest)
-require(ggplot2)
-require(xlsx)
-require(doBy)
-require(MuMIn)
-require(lattice)
-require(grid)
-require(gridExtra)
-require(data.table)
-require(merTools)
-
 #==============================================================================================#
 
 ###READ IN DATA
 
 ##Dataset is Table S2
-fl11<- read.csv(file="fl11.csv", sep=",",head=TRUE, na.string="na")
+fl11<- read.csv(file="Data/flower_dat.csv", sep=",",head=TRUE, na.string="na")
 
 #==============================================================================================#
 
@@ -24,7 +12,7 @@ fl11<- read.csv(file="fl11.csv", sep=",",head=TRUE, na.string="na")
 exp_sum <- summaryBy(garden ~ pop + ssp + ploidy + lat + long + elev + garden, data = fl11, FUN = c(length))
 exp_sum <- tidyr::spread(exp_sum,garden,garden.length)
 exp_sum <- subset(exp_sum, ssp=="w"| ssp=="t")
-write.xlsx(x = exp_sum, file = "suppl_table.xlsx")
+write.xlsx(x = exp_sum, file = "Output/suppl_table.xlsx")
 
 #==============================================================================================#
 
@@ -79,7 +67,7 @@ datapop=with(popfl, data.frame(
 
 ###Correlation among variables
 a_cor <- cor(datapop) 
-write.xlsx(x = a_cor, file = "correl.xlsx")
+write.xlsx(x = a_cor, file = "Output/correl.xlsx")
 
 ###Stepwise variable selection population means
 flm1 <- lmer (julian ~ datapop$lat + datapop$d100 + datapop$dd0 + datapop$dd5 + datapop$fday + datapop$mapmtcm +
@@ -143,7 +131,7 @@ data_a=with(fl11, data.frame(
 
 Climate_vars <- cbind(fl11$pop, data_a)
 colnames(Climate_vars)[1] <- "Population"
-write.xlsx(x = Climate_vars, file = "TableS2.xlsx")
+write.xlsx(x = Climate_vars, file = "Output/TableS2.xlsx")
 
 ####mtcmgsp eliminated because of collinearity with dd0gsp
 
@@ -229,12 +217,12 @@ fit <- cbind(fit,y.hat4)
 
 fit_pop <- summaryBy(observed + y.hat4 + fitted ~ pop + ssp + garden + lat + d100, data= fit, FUN = c(mean))
 fit_pop <- cbind(fit_pop,re_pop2)
-#write.xlsx(x = fit_pop, file = "flowersummary.xlsx")
+#write.xlsx(x = fit_pop, file = "Output/flowersummary.xlsx")
 
 fit_pop2 <- summaryBy(observed + y.hat4 + fitted ~ pop + ssp + lat + d100, data= fit, FUN = c(mean))
 ###Remove 2 outlier with one garden represented
 fit_pop2 <- fit_pop2[-6:-7,]
-write.xlsx(x = fit_pop2, file = "flowersummary.xlsx")
+write.xlsx(x = fit_pop2, file = "Output/flowersummary.xlsx")
 
 #==============================================================================================#
 
@@ -288,17 +276,18 @@ p+ geom_errorbar(aes(ymax = y.hat4.mean + 13 + predict(lm_orch), ymin = y.hat4.m
 
 ###Fig S1
 ###flsum is fit_pop with population removed that are na from one or more gardens
-flsum<- read.csv(file="flsum.csv", sep=",",head=TRUE, na.string="na")
-flsum$pop <- factor(flsum$pop, levels = flsum$pop[order(flsum$lat)])
-zy <- ggplot(flsum, aes(x=pop,y=observed.mean, label=pop))
-zy +  geom_point(size=2) + geom_line(aes(group=garden,color=garden)) + theme_bw() + theme(axis.text.x=element_text(angle = 90,size = 7))
+#flsum<- read.csv(file="flsum.csv", sep=",",head=TRUE, na.string="na")
+#flsum<- read.xlsx(file="Output/flowersummary.xlsx", sheetName = "Sheet1")
+#flsum$pop <- factor(flsum$pop, levels = flsum$pop[order(flsum$lat)])
+#zy <- ggplot(flsum, aes(x=pop,y=observed.mean, label=pop))
+#zy +  geom_point(size=2) + geom_line(aes(group=garden,color=garden)) + theme_bw() + theme(axis.text.x=element_text(angle = 90,size = 7))
 
 #==============================================================================================#
 
 ###TABLE S1
 
 sumtable <- summaryBy(pop+julian~pop+garden+ssp+lat+long, data=fl11, FUN=c(length))
-write.xlsx(x = sumtable, file = "suppl_table1.xlsx")
+write.xlsx(x = sumtable, file = "Output/suppl_table1.xlsx")
 
 #==============================================================================================#
 

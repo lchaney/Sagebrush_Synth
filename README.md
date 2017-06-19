@@ -1,4 +1,5 @@
 #Sagebrush Synthesis
+
 [Bryce Richardson](http://www.fs.fed.us/rmrs-beta/people/richardson-bryce), and [Lindsay Chaney](http://www.lindsaychaney.com)
 
 This repository contains all the code used in the manuscript:

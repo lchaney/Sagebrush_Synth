@@ -1,20 +1,14 @@
-source('01a_SM_load_pack.R')
-library(lattice)
-library(latticeExtra)
-require(lmerTest)
-require(descr)
-require(MuMIn)
-require(doBy)
-require(xlsx)
-require(merTools)
-
+#==============================================================================================#
+# Script created by Bryce Richardson and Lindsay Chaney 2017
+# Script created in version R 3.3.3 
+# This script is used to run the survival analsyis
 #==============================================================================================#
 
 ###READ IN DATA
 
-surv3d <- read.csv("3gardsurv_2015.csv")
-prov_clim <- read.csv("prov_clim_contemp.csv")
-climate <- read.csv("daily_temps.csv")
+surv3d <- read.csv("Data/surv_dat.csv")
+prov_clim <- read.csv("Data/prov_clim_contemp.csv")
+climate <- read.csv("Data/daily_temps.csv")
 
 
 #==============================================================================================#
@@ -251,10 +245,4 @@ fit <- with(surv3clim_filter, data.frame(pop=pop, garden=garden, type=type, obse
 fit <- cbind(fit,y.hat4)
 fit_pop <- summaryBy(observed + fitted + y.hat4 ~ pop + type, data= fit, FUN = c(mean))
 fit_pop_g <- summaryBy(observed + fitted + y.hat4 ~ pop + garden + type, data= fit, FUN = c(mean))
-write.xlsx(x = fit_pop, file = "survsummary.xlsx")
-
-
-#==============================================================================================#
-
-
-
+write.xlsx(x = fit_pop, file = "Output/survsummary.xlsx")

@@ -9,7 +9,7 @@
   #install and load the following packages
   packagelist <- c("survival", "ggplot2", "doBy", "lme4", "lmerTest",
                    "merTools", "MuMIn", "lattice", "xlsx", "data.table",
-                   "gridExtra")
+                   "gridExtra", "tidyr", "dplyr")
 
   new.packages <- packagelist[!(packagelist %in% installed.packages()[,"Package"])]
 
@@ -27,6 +27,8 @@
   library(xlsx) #read and write excel files
   library(data.table) #data wrangling
   library(gridExtra) #gridarrange and arrangeGrob for ggplots
+  library(tidyr) #used for data wrangling
+  library(dplyr) #used for data wrangling
 
 
 ###FLOWERING###
@@ -38,5 +40,9 @@
   source('Analysis/growth_script.R')  
   
 ###SEED YIELD###
-  #source the growth rate analysis
+  #source the seed yeild analysis
   source('Analysis/seed_script.R')  
+  
+###SURVIVAL###
+  #source the survival analysis
+  source('Analysis/surv_script.R')  

@@ -1,4 +1,4 @@
-#Sagebrush Synthesis
+# Sagebrush Synthesis
 
 [Bryce Richardson](http://www.fs.fed.us/rmrs-beta/people/richardson-bryce), and [Lindsay Chaney](http://www.lindsaychaney.com)
 
@@ -9,7 +9,7 @@ paper citation here
 
 **Abstract:** 	abstract here
 
-##Data
+## Data
 
 Data has been archived for public access at Dryad (http://datadryad.org/) *edit link
 
@@ -19,7 +19,7 @@ To cite this data:
 data ciation here
 ```
 
-##Running
+## Running
 
 1) Create a parent folder that will be your working directory to run the analysis.
 2) Make sure all data files are downloaded and place all data (csv files) into a 

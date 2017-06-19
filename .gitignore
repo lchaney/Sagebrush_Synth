@@ -1,0 +1,9 @@
+.DS_Store
+*(Autosaved).R
+.Rproj.user
+.Rhistory
+*.Rproj
+*.html
+*.csv
+Data/
+Output/

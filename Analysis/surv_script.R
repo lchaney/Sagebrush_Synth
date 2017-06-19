@@ -88,7 +88,7 @@ surv3dd <- rbind(sdat_E, sdat_M, sdat_O)
 
 #aggregate population level data with counts of survival and dead
 surv3counts <- surv3dd %>% group_by(pop, type, garden) %>% 
-  summarise(death = sum(death), total = n()) %>% 
+  dplyr::summarise(death = sum(death), total = n()) %>% 
   mutate(surv = total - death, propdead = death / total)
 
 

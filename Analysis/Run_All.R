@@ -21,8 +21,8 @@
   library(doBy) #used for the summaryBy function
   library(lme4) #used for mixed effect linear models
   library(lmerTest) #used to significance test in for lme
-  library(merTools) #xxx
-  library(MuMIn) #xxx
+  library(merTools) #analyzing mixed effect regression models
+  library(MuMIn) #model selection
   library(lattice) #graphics
   library(xlsx) #read and write excel files
   library(data.table) #data wrangling
@@ -30,7 +30,7 @@
   library(tidyr) #used for data wrangling
   library(dplyr) #used for data wrangling
   library(devtools) #allows installation of packages from github
-  library(GGally) #xxx
+  library(GGally) #graphics
     install_github("vqv/ggbiplot") #installs ggbiplot from github
   library(ggbiplot) #biplot using ggplot2
 

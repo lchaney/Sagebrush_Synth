@@ -32,3 +32,7 @@
 ###FLOWERING###
   #source the flower analysis
   source('Analysis/flower_script.R')
+  
+###GROWTH###
+  #source the growth rate analysis
+  source('Analysis/growth_script.R')  

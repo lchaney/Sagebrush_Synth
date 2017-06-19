@@ -1,15 +1,11 @@
-require(lme4)
-require(lmerTest)
-require(ggplot2)
-require(doBy)
-require(MuMIn)
-require(xlsx)
-require(lattice)
-require(data.table)
-require(merTools)
-#=================================================================================================#
+#==============================================================================================#
+# Script created by Bryce Richardson and Lindsay Chaney 2017
+# Script created in version R 3.3.3 
+# This script is used to run the growth rate analsyis
+#==============================================================================================#
+
 ###READ IN DATA
-grw1 <- read.csv(file="master6-15_grw.csv", sep=",",head=TRUE, na.string="na")
+grw1 <- read.csv(file="Data/growth_dat.csv", sep=",",head=TRUE, na.string="na")
 grw <- na.omit(grw1)
 
 grw_log = log1p(grw$grwvol_m)
@@ -69,8 +65,8 @@ cor <- cor(data_pop)
 ###+/-0.25 CORRELATION: mapmtcm,mtcmgsp,d100,dd0,mtcm
 
 full1 <- lmer (grw_log ~ data_pop$mapmtcm + data_pop$dd0 + data_pop$d100 + data_pop$mapmtcm
-               + data_pop$mtcm + (1|garden) + (1|year:garden) + (1|type:(year:garden))
-               ,REML=TRUE , data=popgrw)
+               + data_pop$mtcm + (1|garden) + (1|year:garden) + (1|type:(year:garden)), 
+               REML=TRUE , data=popgrw)
 
 s_full <- step(full1)
 s_full
@@ -124,7 +120,7 @@ data_a=with(wytri, data.frame(
   dd0gsp=dd0/gsp,
   grw_log))
 
-write.xlsx(x = cor, file = "correl.xlsx")
+write.xlsx(x = cor, file = "growth_correl.xlsx")
 
 ###LMER MODEL
 grwmd2 <- lmer(grw_log ~ data_a$d100 + (1|year:garden) + (1|type:(year:garden)) + (1|pop:(type:(year:garden))),REML=TRUE , data=wytri)
@@ -205,7 +201,7 @@ fit <- with(wytri, data.frame(pop=pop, garden=garden, ssp=ssp, type=type, family
 
 fit_pop_g <- summaryBy(observed + y.hat4 + fitted ~ pop + type + garden, data= fit, FUN = c(mean))
 fit_pop <- summaryBy(observed + y.hat4 + fitted ~ pop + type, data= fit, FUN = c(mean))
-write.xlsx(x = fit_pop, file = "grwsummary.xlsx")
+write.xlsx(x = fit_pop, file = "Output/grwsummary.xlsx")
 
 ###FIXED EFF GRAPH FOR MANUSCRIPT
 q<-ggplot(fit_pop_g, aes(y=observed.mean,x=fitted.mean))+theme_bw() 
@@ -213,9 +209,3 @@ q+stat_smooth(method=lm,se=FALSE,linetype=4,color="gray",size=1) + geom_point(ae
 
 p<-ggplot(fit_pop_g, aes(y=observed.mean,x=y.hat4.mean,shape=garden,fill=garden))+theme_bw() 
 p+stat_smooth(method=lm,se=FALSE,linetype=4,size=1,color="gray") + geom_point(size=3) + xlab("Predicted") + ylab("Observed") + labs(color = "Gardens") + scale_shape_manual(values=c(21,22,24))
-
-
-
-
-
-

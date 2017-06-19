@@ -120,7 +120,7 @@ data_a=with(wytri, data.frame(
   dd0gsp=dd0/gsp,
   grw_log))
 
-write.xlsx(x = cor, file = "growth_correl.xlsx")
+write.xlsx(x = cor, file = "Output/growth_correl.xlsx")
 
 ###LMER MODEL
 grwmd2 <- lmer(grw_log ~ data_a$d100 + (1|year:garden) + (1|type:(year:garden)) + (1|pop:(type:(year:garden))),REML=TRUE , data=wytri)

@@ -36,3 +36,7 @@
 ###GROWTH###
   #source the growth rate analysis
   source('Analysis/growth_script.R')  
+  
+###SEED YIELD###
+  #source the growth rate analysis
+  source('Analysis/seed_script.R')  

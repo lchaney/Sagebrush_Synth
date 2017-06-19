@@ -1,18 +1,12 @@
-require(lme4)
-require(lmerTest)
-require(MuMIn)
-require(ggplot2)
-require(lattice)
-require(doBy)
-require(xlsx)
-require(data.table)
-require(merTools)
-
+#==============================================================================================#
+# Script created by Bryce Richardson and Lindsay Chaney 2017
+# Script created in version R 3.3.3 
+# This script is used to run the seed yeild analsyis
 #==============================================================================================#
 
 ###READ IN DATA
 
-wytri <- read.csv(file="wy_tri.csv", sep=",",head=TRUE, na.string="na")
+wytri <- read.csv(file="Data/seed_dat.csv", sep=",",head=TRUE, na.string="na")
 
 #==============================================================================================#
 
@@ -236,7 +230,7 @@ fit <- cbind(fit,y.hat4)
 
 fit_pop_g <- summaryBy(observed + fitted + y.hat4 ~ pop + type + garden, data= fit, FUN = c(mean))
 fit_pop <- summaryBy(observed + fitted + y.hat4 ~ pop + type, data= fit, FUN = c(mean))
-write.xlsx(x = fit_pop, file = "seedsummary.xlsx")
+write.xlsx(x = fit_pop, file = "Output/seedsummary.xlsx")
 
 #==============================================================================================#
 
@@ -247,5 +241,3 @@ q+stat_smooth(method=lm,se=FALSE,linetype=4,color="gray",size=1) + geom_point(ae
 
 p<-ggplot(fit_pop_g, aes(y=observed.mean,x=y.hat4.mean,shape=garden,fill=garden))+theme_bw() 
 p+stat_smooth(method=lm,se=FALSE,linetype=4,size=1,color="gray") + geom_point(size=3) + xlab("Predicted") + ylab("Observed") + labs(color = "Gardens") + scale_shape_manual(values=c(21,22,24))
-
-

@@ -1,4 +1,8 @@
 #==============================================================================================#
+# Script created by Bryce Richardson and Lindsay Chaney 2017
+# Script created in version R 3.3.3 
+# This script is used to run the flowering phenology analsyis
+#==============================================================================================#
 
 ###READ IN DATA
 
@@ -67,7 +71,7 @@ datapop=with(popfl, data.frame(
 
 ###Correlation among variables
 a_cor <- cor(datapop) 
-write.xlsx(x = a_cor, file = "Output/correl.xlsx")
+write.xlsx(x = a_cor, file = "Output/flower_correl.xlsx")
 
 ###Stepwise variable selection population means
 flm1 <- lmer (julian ~ datapop$lat + datapop$d100 + datapop$dd0 + datapop$dd5 + datapop$fday + datapop$mapmtcm +

@@ -8,8 +8,6 @@
 
 surv3d <- read.csv("Data/surv_dat.csv")
 prov_clim <- read.csv("Data/prov_clim_contemp.csv")
-climate <- read.csv("Data/daily_temps.csv")
-
 
 #==============================================================================================#
 
@@ -90,15 +88,6 @@ surv3dd <- rbind(sdat_E, sdat_M, sdat_O)
 surv3counts <- surv3dd %>% group_by(pop, type, garden) %>% 
   dplyr::summarise(death = sum(death), total = n()) %>% 
   mutate(surv = total - death, propdead = death / total)
-
-
-#==============================================================================================#	
-
-#CLEANING UP climate data
-
-#tell R to treat the date in a format it can understand month day year to year month day
-#transforms 1/1/10 to 2010-01-01
-climate$Date <- as.Date(climate$Date, "%m/%d/%y")
 
 #==============================================================================================#
 

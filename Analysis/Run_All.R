@@ -27,11 +27,11 @@
   library(data.table) #data wrangling
   library(gridExtra) #gridarrange and arrangeGrob for ggplots
   library(tidyr) #used for data wrangling
-  library(dplyr) #used for data wrangling
   library(devtools) #allows installation of packages from github
   library(GGally) #graphics
     install_github("vqv/ggbiplot") #installs ggbiplot from github
   library(ggbiplot) #biplot using ggplot2
+  library(dplyr) #used for data wrangling
 
 #create Output folder
   if(!file.exists("Output"))

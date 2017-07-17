@@ -280,11 +280,10 @@ p+ geom_errorbar(aes(ymax = y.hat4.mean + 13 + predict(lm_orch), ymin = y.hat4.m
 
 ###Fig S1
 ###flsum is fit_pop with population removed that are na from one or more gardens
-#flsum<- read.csv(file="flsum.csv", sep=",",head=TRUE, na.string="na")
-#flsum<- read.xlsx(file="Output/flowersummary.xlsx", sheetName = "Sheet1")
-#flsum$pop <- factor(flsum$pop, levels = flsum$pop[order(flsum$lat)])
-#zy <- ggplot(flsum, aes(x=pop,y=observed.mean, label=pop))
-#zy +  geom_point(size=2) + geom_line(aes(group=garden,color=garden)) + theme_bw() + theme(axis.text.x=element_text(angle = 90,size = 7))
+flsum<- read.csv(file="flsum.csv", sep=",",head=TRUE, na.string="na")
+flsum$pop <- factor(flsum$pop, levels = flsum$pop[order(flsum$lat)])
+zy <- ggplot(flsum, aes(x=pop,y=observed.mean, label=pop))
+zy +  geom_point(size=2) + geom_line(aes(group=garden,color=garden)) + theme_bw() + theme(axis.text.x=element_text(angle = 90,size = 7))
 
 #==============================================================================================#
 

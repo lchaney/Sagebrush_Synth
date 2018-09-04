@@ -39,3 +39,5 @@ To cite this code:
 ```
 code citation here
 ```
+
+Code [![DOI](https://zenodo.org/badge/94641785.svg)](https://zenodo.org/badge/latestdoi/94641785)

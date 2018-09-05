@@ -32,12 +32,8 @@ the folders "Data" and "Analysis".
 load all needed packages and perform all analysis.
 6) All output will be saved in a folder called "Output".
 
-## Citation
+## Code
 
-To cite this code:
+Below is a the digital object identifier (DOI), a unique alphanumeric string to identify content and provide a persistent link to its location on the Internet, for this code.
 
-```
-code citation here
-```
-
-Code [![DOI](https://zenodo.org/badge/94641785.svg)](https://zenodo.org/badge/latestdoi/94641785)
+[![DOI](https://zenodo.org/badge/94641785.svg)](https://zenodo.org/badge/latestdoi/94641785)
